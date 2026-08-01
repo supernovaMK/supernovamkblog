@@ -901,8 +901,87 @@ html[data-theme='dark'] .hljs-built_in { color: #78d9ec; }
 .text-link svg { width: 16px; height: 16px; }
 
 /* ── 소개 페이지 ────────────────────────────────────────── */
-.about-longform { margin: 2.25rem 0; }
-.contact-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.about-head {
+  padding: 3.25rem 0 1rem;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 0.5rem;
+}
+.about-greeting {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+}
+.about-headline {
+  font-size: clamp(1.6rem, 4.5vw, 2.1rem);
+  font-weight: 400;
+  margin-bottom: 1.1rem;
+}
+.about-headline strong { font-weight: 700; }
+.about-socials { display: flex; gap: 0.15rem; margin: 0 0 1.25rem -0.6rem; }
+
+.about-section { padding: 1.75rem 0 0.5rem; }
+
+.about-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.9rem;
+}
+.about-emoji { font-size: 1.15rem; line-height: 1; }
+
+.about-body { font-size: 0.96rem; }
+.about-body p { color: var(--text-secondary); margin-bottom: 0.75em; }
+.about-body > *:last-child { margin-bottom: 0; }
+
+.about-list { list-style: none; margin: 0; padding: 0; }
+
+.about-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.7rem 0;
+}
+.about-item + .about-item { border-top: 1px solid var(--border-soft); }
+
+.about-item-main { min-width: 0; }
+
+.about-item-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+.about-item-name.is-link { color: var(--blue); }
+.about-item-name.is-link:hover { text-decoration: underline; }
+.about-item-name svg { width: 15px; height: 15px; }
+
+.about-item-detail {
+  margin: 0.2rem 0 0;
+  font-size: 0.87rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.about-period {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+@media (max-width: 34rem) {
+  .about-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+  .about-period { order: -1; font-size: 0.75rem; }
+}
 
 /* ── 404 ────────────────────────────────────────────────── */
 .notfound { padding: 5rem 0; text-align: center; }

@@ -4,6 +4,7 @@ import { icons } from './icons.js';
 
 function socialLinks() {
   return socials
+    .filter((s) => s.url && s.url.trim())
     .map(
       (s) =>
         `<a class="icon-link" href="${escapeHtml(s.url)}" title="${escapeHtml(s.name)}" aria-label="${escapeHtml(s.name)}"${
@@ -23,9 +24,7 @@ function header(active) {
 
   return `<header class="site-header">
   <div class="shell header-inner">
-    <a class="brand" href="${url('/')}">
-      <span class="brand-pin">${icons.pin}</span>${escapeHtml(site.title)}
-    </a>
+    <a class="brand" href="${url('/')}">${escapeHtml(site.title)}</a>
     <nav class="site-nav" aria-label="주요 메뉴">
       ${links}
       <button class="theme-toggle" type="button" aria-label="화면 밝기 전환">

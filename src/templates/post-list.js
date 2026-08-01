@@ -42,10 +42,7 @@ export function renderPostList({ posts }) {
 </section>`,
         )
         .join('')
-    : emptyState(
-        '아직 쓴 글이 없습니다.',
-        '터미널에서 <code>npm run new "첫 글"</code> 을 실행해보세요.',
-      );
+    : emptyState('아직 쓴 글이 없습니다.');
 
   return layout({
     title: '글',

@@ -32,6 +32,12 @@ export function shortDate(date) {
   return `${y.slice(2)}.${m}.${d}`;
 }
 
+/** '2026-08-01' → '08.01' (연도가 이미 위에 적혀 있을 때) */
+export function dayDate(date) {
+  const [, m, d] = String(date).slice(0, 10).split('-');
+  return `${m}.${d}`;
+}
+
 export function year(date) {
   return String(date).slice(0, 4);
 }

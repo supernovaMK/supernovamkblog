@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 
-import { site, HOME_POST_COUNT } from './config.js';
+import { site, hero, HOME_POST_COUNT } from './config.js';
 import { renderMarkdown } from './markdown.js';
 import { url, escapeHtml, formatDate, readingTime, slugify, excerpt } from './helpers.js';
 import { renderHome } from './templates/home.js';
@@ -121,6 +121,20 @@ function copyDir(from, to) {
   }
 }
 
+/**
+ * 프로필 사진이 실제로 있는지 확인합니다.
+ * 없으면 빈 값을 돌려줘서 이름 첫 글자가 대신 들어가게 합니다. (깨진 이미지 방지)
+ */
+function resolveHeroPhoto() {
+  if (!hero.photo) return '';
+  const rel = hero.photo.replace(/^\//, '');
+  if (fs.existsSync(path.join(ROOT, 'static', rel))) return hero.photo;
+
+  console.warn(`  ! 프로필 사진이 아직 없습니다: static/${rel}`);
+  console.warn(`    그 자리에 사진을 넣으면 자동으로 들어갑니다. (지금은 이름 첫 글자로 표시)`);
+  return '';
+}
+
 /* ─────────────────────── 부가 파일 (RSS·사이트맵) ─────────────────────── */
 
 function buildFeed(posts) {
@@ -179,6 +193,8 @@ function build() {
   // 정적 자산
   copyDir(path.join(__dirname, 'assets'), path.join(DIST, 'assets'));
   copyDir(path.join(POSTS_DIR, 'images'), path.join(DIST, 'images'));
+  copyDir(path.join(ROOT, 'static'), DIST); // 프로필 사진 등
+  const heroPhoto = resolveHeroPhoto();
 
   // 페이지
   writePage(
@@ -186,7 +202,8 @@ function build() {
     renderHome({
       posts: posts.slice(0, HOME_POST_COUNT),
       total: posts.length,
-      allPosts: posts, // 스킬 맵이 지점을 실제 글에 연결할 때 씁니다
+      allPosts: posts, // 아래쪽 연도별 목록에 씁니다
+      heroPhoto,
     }),
   );
   writePage('/posts', renderPostList({ posts }));

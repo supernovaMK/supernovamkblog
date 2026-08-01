@@ -14,6 +14,9 @@ export const icons = {
     '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
   ),
   x: svg('<path d="M4 3h4.5l4 5.6L17.5 3H21l-6.8 8L21 21h-4.5l-4.3-6L6.5 21H3l7.2-8.4z" fill="currentColor" stroke="none"/>'),
+  youtube: svg(
+    '<path d="M22.5 7.2a2.7 2.7 0 0 0-1.9-1.9C18.9 4.8 12 4.8 12 4.8s-6.9 0-8.6.5A2.7 2.7 0 0 0 1.5 7.2C1 8.9 1 12 1 12s0 3.1.5 4.8a2.7 2.7 0 0 0 1.9 1.9c1.7.5 8.6.5 8.6.5s6.9 0 8.6-.5a2.7 2.7 0 0 0 1.9-1.9c.5-1.7.5-4.8.5-4.8s0-3.1-.5-4.8z"/><path d="m10 15 5-3-5-3z" fill="currentColor"/>',
+  ),
   instagram: svg(
     '<rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>',
   ),

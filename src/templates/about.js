@@ -10,6 +10,7 @@ export function renderAbout() {
     .join('');
 
   const links = socials
+    .filter((s) => s.url && s.url.trim())
     .map(
       (s) =>
         `<a class="contact-link" href="${escapeHtml(s.url)}"${

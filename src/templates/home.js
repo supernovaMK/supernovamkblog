@@ -4,6 +4,7 @@ import { renderInline } from '../markdown.js';
 import { layout } from './layout.js';
 import { icons } from './icons.js';
 import { postItem, emptyState } from './partials.js';
+import { commitChip } from './log.js';
 
 /** 주소가 채워진 소셜만 남깁니다 */
 function activeSocials() {
@@ -21,12 +22,15 @@ function heroCard(photo) {
     )
     .join('');
 
-  // 사진이 없으면 이름 첫 글자로 대신합니다
-  const avatar = photo
-    ? `<img class="avatar" src="${url(photo)}" alt="${escapeHtml(hero.photoAlt || hero.name)}" width="132" height="132">`
-    : `<span class="avatar avatar-initial" aria-hidden="true">${escapeHtml([...hero.name][0] ?? '')}</span>`;
+  // photo: 파일경로 → 사진 / 'initial' → 이름 첫 글자 / '' → 안 보임
+  let avatar = '';
+  if (photo === 'initial') {
+    avatar = `<span class="avatar avatar-initial" aria-hidden="true">${escapeHtml([...hero.name][0] ?? '')}</span>`;
+  } else if (photo) {
+    avatar = `<img class="avatar" src="${url(photo)}" alt="${escapeHtml(hero.photoAlt || hero.name)}" width="132" height="132">`;
+  }
 
-  return `<section class="hero-card">
+  return `<section class="hero-card${avatar ? '' : ' is-solo'}">
   <svg class="card-run" aria-hidden="true" focusable="false">
     <rect class="card-run-line" x="0" y="0" width="100%" height="100%" rx="10" ry="10" pathLength="100"/>
   </svg>
@@ -40,7 +44,7 @@ function heroCard(photo) {
       <span class="icon-btns">${links}</span>
     </div>
   </div>
-  <div class="hero-photo">${avatar}</div>
+  ${avatar ? `<div class="hero-photo">${avatar}</div>` : ''}
 </section>`;
 }
 
@@ -69,7 +73,7 @@ function nowBlock() {
   return `<section class="block">
   <div class="block-head">
     <h2 class="block-title">${icons.clock} ${escapeHtml(now.heading)}</h2>
-    ${now.updated ? `<span class="block-aside">${escapeHtml(now.updated)} 기준</span>` : ''}
+    ${commitChip()}
   </div>
   <div class="block-body">
     <div class="now-md">${renderInline(now.body)}</div>

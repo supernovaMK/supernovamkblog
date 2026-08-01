@@ -17,6 +17,7 @@ import { renderPostList } from './templates/post-list.js';
 import { renderPost } from './templates/post.js';
 import { renderAbout } from './templates/about.js';
 import { renderNotFound } from './templates/not-found.js';
+import { renderLog } from './templates/log.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -126,13 +127,15 @@ function copyDir(from, to) {
  * 없으면 빈 값을 돌려줘서 이름 첫 글자가 대신 들어가게 합니다. (깨진 이미지 방지)
  */
 function resolveHeroPhoto() {
-  if (!hero.photo) return '';
+  // '' (안 보임) 과 'initial' (이름 첫 글자) 은 파일이 필요 없습니다
+  if (!hero.photo || hero.photo === 'initial') return hero.photo;
+
   const rel = hero.photo.replace(/^\//, '');
   if (fs.existsSync(path.join(ROOT, 'static', rel))) return hero.photo;
 
-  console.warn(`  ! 프로필 사진이 아직 없습니다: static/${rel}`);
-  console.warn(`    그 자리에 사진을 넣으면 자동으로 들어갑니다. (지금은 이름 첫 글자로 표시)`);
-  return '';
+  console.warn(`  ! 프로필 사진이 없습니다: static/${rel}`);
+  console.warn(`    사진을 그 자리에 넣거나, config.js 의 hero.photo 를 'initial' 로 두세요.`);
+  return 'initial';
 }
 
 /* ─────────────────────── 부가 파일 (RSS·사이트맵) ─────────────────────── */
@@ -168,7 +171,7 @@ ${items}
 
 function buildSitemap(posts) {
   const base = site.url.replace(/\/$/, '');
-  const routes = ['/', '/posts', '/about', ...posts.map((p) => p.permalink)];
+  const routes = ['/', '/posts', '/about', '/log', ...posts.map((p) => p.permalink)];
   const urls = routes
     .map((r) => `  <url><loc>${base}${r === '/' ? '' : r}/</loc></url>`)
     .join('\n');
@@ -208,6 +211,7 @@ function build() {
   );
   writePage('/posts', renderPostList({ posts }));
   writePage('/about', renderAbout());
+  writePage('/log', renderLog());
   for (const [i, post] of posts.entries()) {
     writePage(post.permalink, renderPost({
       post,

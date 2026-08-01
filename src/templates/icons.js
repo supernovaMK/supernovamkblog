@@ -39,4 +39,6 @@ export const icons = {
   minus: svg('<path d="M5 12h14"/>'),
   recenter: svg('<circle cx="12" cy="12" r="3.5"/><path d="M12 2v3.5M12 18.5V22M2 12h3.5M18.5 12H22"/>'),
   layers: svg('<path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 14 9 5 9-5"/>'),
+  /* 깃 커밋 표시 — 가로선 가운데 동그라미 */
+  gitCommit: svg('<circle cx="12" cy="12" r="4"/><path d="M2 12h6M16 12h6"/>'),
 };

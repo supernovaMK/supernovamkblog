@@ -306,8 +306,23 @@ html[data-theme='dark'] .btn-primary { color: #202124; }
 }
 html[data-theme='dark'] .avatar-initial { color: #202124; }
 
-/* 사진 없이 글만 있을 때 */
-.hero-card.is-solo { grid-template-columns: 1fr; }
+/* 사진 없이 글만 있을 때 — 이름 | 소개+버튼 두 칸으로 */
+.hero-card.is-split {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 0;
+  padding: 2.25rem 2.5rem;
+}
+.hero-card.is-split .hero-text { padding-right: 2.75rem; }
+.hero-card.is-split .hero-name { margin-bottom: 0.6rem; }
+.hero-card.is-split .hero-tagline { margin-bottom: 0; font-size: 1.02rem; }
+
+.hero-aside {
+  min-width: 0;
+  padding-left: 2.75rem;
+  border-left: 1px solid var(--border-soft);
+}
+.hero-aside .hero-intro { max-width: none; margin-bottom: 1.35rem; }
+.hero-aside .hero-actions { margin: 0; }
 
 /* ── 커밋 버튼 (깃허브 커밋 표시 흉내) ─────────────────── */
 .commit-chip {
@@ -911,6 +926,23 @@ html[data-theme='dark'] .hljs-built_in { color: #78d9ec; }
 
 /* ── 반응형 ─────────────────────────────────────────────── */
 /* 좁은 화면: 소개 카드를 세로로 쌓고 사진을 위로 올립니다 */
+@media (max-width: 46rem) {
+  /* .is-split 이 더 구체적이라 같은 수준으로 눌러줍니다 */
+  .hero-card.is-split {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.75rem 1.35rem;
+  }
+  .hero-card.is-split .hero-text { padding-right: 0; }
+  .hero-aside {
+    padding-left: 0;
+    padding-top: 1.25rem;
+    border-left: 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .hero-card.is-split .hero-tagline { margin-bottom: 0; }
+}
+
 @media (max-width: 40rem) {
   .hero-card {
     grid-template-columns: 1fr;
@@ -918,6 +950,7 @@ html[data-theme='dark'] .hljs-built_in { color: #78d9ec; }
     text-align: center;
     gap: 1.25rem;
   }
+  .hero-card.is-split { justify-items: stretch; text-align: left; }
   .hero-photo { order: -1; }
   .hero-tagline, .hero-intro { max-width: 32rem; }
   .hero-actions { justify-content: center; }
@@ -935,6 +968,15 @@ html[data-theme='dark'] .hljs-built_in { color: #78d9ec; }
   .neighbor-next { text-align: left; }
   .neighbor-next .neighbor-label { justify-content: flex-start; }
   .prose h2 .anchor, .prose h3 .anchor { display: none; }
+}
+
+/* 아주 좁은 화면: 메뉴가 늘어나 제목과 붙지 않게 */
+@media (max-width: 30rem) {
+  .brand { font-size: 1rem; }
+  .site-nav { gap: 0; }
+  .site-nav a { padding: 0.4rem 0.5rem; font-size: 0.85rem; }
+  .theme-toggle { width: 2.1rem; height: 2.1rem; margin-left: 0.1rem; }
+  .header-inner { height: 3.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

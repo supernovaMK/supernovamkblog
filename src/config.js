@@ -46,7 +46,7 @@ export const hero = {
    *   ''             → 아무것도 안 넣음
    *   '/profile.jpg' → static/ 에 넣은 사진 파일
    */
-  photo: 'initial',
+  photo: '',
   photoAlt: '김민기 프로필 사진',
 };
 

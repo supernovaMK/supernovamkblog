@@ -30,21 +30,35 @@ function heroCard(photo) {
     avatar = `<img class="avatar" src="${url(photo)}" alt="${escapeHtml(hero.photoAlt || hero.name)}" width="132" height="132">`;
   }
 
-  return `<section class="hero-card${avatar ? '' : ' is-solo'}">
-  <svg class="card-run" aria-hidden="true" focusable="false">
+  const runner = `<svg class="card-run" aria-hidden="true" focusable="false">
     <rect class="card-run-line" x="0" y="0" width="100%" height="100%" rx="10" ry="10" pathLength="100"/>
-  </svg>
-  <div class="hero-text">
-    <p class="hero-eyebrow">${escapeHtml(hero.greeting)}</p>
+  </svg>`;
+
+  const identity = `<p class="hero-eyebrow">${escapeHtml(hero.greeting)}</p>
     <h1 class="hero-name">${escapeHtml(hero.name)}${escapeHtml(hero.suffix)}</h1>
-    <p class="hero-tagline">${escapeHtml(hero.tagline)}</p>
-    ${hero.intro ? `<p class="hero-intro">${escapeHtml(hero.intro)}</p>` : ''}
-    <div class="hero-actions">
+    <p class="hero-tagline">${escapeHtml(hero.tagline)}</p>`;
+
+  const intro = hero.intro ? `<p class="hero-intro">${escapeHtml(hero.intro)}</p>` : '';
+
+  const actions = `<div class="hero-actions">
       <a class="btn btn-primary" href="${url('/about')}">더 자세히 알아보기</a>
       <span class="icon-btns">${links}</span>
-    </div>
-  </div>
-  ${avatar ? `<div class="hero-photo">${avatar}</div>` : ''}
+    </div>`;
+
+  // 사진이 있으면 [글 | 사진], 없으면 [이름 | 소개+버튼] 두 칸으로 나눠
+  // 카드가 한쪽만 차고 비어 보이지 않게 합니다.
+  if (avatar) {
+    return `<section class="hero-card">
+  ${runner}
+  <div class="hero-text">${identity}${intro}${actions}</div>
+  <div class="hero-photo">${avatar}</div>
+</section>`;
+  }
+
+  return `<section class="hero-card is-split">
+  ${runner}
+  <div class="hero-text">${identity}</div>
+  <div class="hero-aside">${intro}${actions}</div>
 </section>`;
 }
 

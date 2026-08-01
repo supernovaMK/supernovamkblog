@@ -79,7 +79,13 @@ function nowBlock() {
 
 /* ── 아래: 연도별로 쭉 나열 ─────────────────────────────── */
 function archiveSection(posts) {
-  if (!posts.length) return '';
+  // 글이 없어도 자리는 보여줍니다 (여기에 쌓인다는 걸 알 수 있게)
+  if (!posts.length) {
+    return `<section class="archive">
+  <h2 class="archive-heading">${escapeHtml(archive.heading)}</h2>
+  ${emptyState('글을 올리면 연도별로 여기에 쌓입니다.')}
+</section>`;
+  }
 
   const groups = new Map();
   for (const p of posts) {

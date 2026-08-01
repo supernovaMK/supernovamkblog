@@ -808,10 +808,26 @@ html[data-theme='dark'] .hljs-built_in { color: #78d9ec; }
 .footer-note { margin: 0; font-size: 0.78rem; color: var(--text-faint); }
 
 /* ── 반응형 ─────────────────────────────────────────────── */
+/* 좁은 화면: 소개 카드를 세로로 쌓고 사진을 위로 올립니다 */
+@media (max-width: 40rem) {
+  .hero-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 1.25rem;
+  }
+  .hero-photo { order: -1; }
+  .hero-tagline, .hero-intro { max-width: 32rem; }
+  .hero-actions { justify-content: center; }
+  .avatar { width: 6.75rem; height: 6.75rem; }
+  .avatar-initial { font-size: 2.6rem; }
+}
+
 @media (max-width: 46rem) {
   .split { grid-template-columns: 1fr; gap: 1rem; }
-  .hero-card { padding: 2rem 1.4rem; margin-top: 1.5rem; }
+  .hero-card { padding: 1.75rem 1.35rem; margin-top: 1.25rem; }
   .shell { padding: 0 1rem; }
+  .hero-name { font-size: clamp(1.5rem, 7vw, 2rem); }
   .neighbors { grid-template-columns: 1fr; }
   .neighbor-next { text-align: left; }
   .neighbor-next .neighbor-label { justify-content: flex-start; }

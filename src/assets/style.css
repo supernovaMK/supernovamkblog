@@ -959,8 +959,9 @@ html[data-theme='dark'] .hljs-built_in { color: #78d9ec; }
 .about-item-name.is-link:hover { text-decoration: underline; }
 .about-item-name svg { width: 15px; height: 15px; }
 
+.about-item:has(.about-item-detail) .about-item-name { display: block; }
 .about-item-detail {
-  margin: 0.2rem 0 0;
+  margin: 0.25rem 0 0;
   font-size: 0.87rem;
   line-height: 1.6;
   color: var(--text-secondary);

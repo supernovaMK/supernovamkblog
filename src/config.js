@@ -59,64 +59,98 @@ export const hero = {
    ══════════════════════════════════════════════════════════════ */
 export const about = {
   greeting: '안녕하세요.',
-  headline: '개발자 김민기입니다.',
+  headline: '백엔드·인프라를 공부하는 김민기입니다.',
 
   sections: [
     {
-      emoji: '😄',
       title: 'Introduction',
       body: `
-문제를 붙잡고 오래 고민하는 걸 좋아합니다.
-빨리 되는 것보다 왜 되는지가 설명되는 쪽을 택합니다.
+서버가 왜 무너지는지 직접 무너뜨려 보면서 배우는 걸 좋아합니다.
+장애를 재현하고, 지표로 원인을 좁히고, 고친 뒤 다시 확인하는 과정을 반복하고 있습니다.
 
-읽은 것, 만든 것, 틀렸던 것을 기록으로 남깁니다.
+읽은 것과 만든 것, 틀렸던 것을 여기에 기록으로 남깁니다.
 남에게 설명할 수 있어야 비로소 안다고 생각해서요.
 `,
     },
     {
-      emoji: '✏️',
       title: 'Education',
       items: [
         {
-          name: '○○대학교 컴퓨터공학과',
-          period: '2021.03 ~',
-          detail: '전공 · 학교 이름을 채워주세요.',
+          name: '세종대학교 소프트웨어학과',
+          period: '2021.03 ~ 2027.02',
+          detail: '학점 3.9 / 4.5 · 네트워크, 자료구조, 알고리즘, 컴퓨터구조, 운영체제, 데이터베이스',
         },
       ],
     },
     {
-      emoji: '💻',
-      title: 'Activity',
+      title: 'Experience',
       items: [
         {
-          name: '동아리 · 활동 이름',
-          period: '2025.03 ~ 2026.02',
-          detail: '무엇을 맡아 무엇을 했는지 한 줄로 적으면 됩니다.',
-        },
-        {
-          name: '또 다른 활동',
-          period: '2024.09 ~ 2025.02',
-          detail: '',
+          name: 'Grit Standard · 소프트웨어 엔지니어 인턴',
+          period: '2023.08 ~ 2023.12',
+          detail:
+            '손으로 처리하던 문서 작업을 Tesseract·Pandas 기반 파이썬 파이프라인으로 자동화했습니다. 처리에 실패한 문서를 따로 모아 실패 원인과 함께 머신러닝 팀에 넘겨, 미지원 양식까지 다루는 모델로 이어지게 했습니다.',
         },
       ],
     },
     {
-      emoji: '🚀',
       title: 'Projects',
       items: [
         {
-          name: '선착순 예약 서비스',
-          period: '2026.07 ~',
-          detail: '짧은 시간에 몰리는 요청을 어떻게 버틸지 실험하며 만들고 있습니다.',
-          link: '', // 깃허브나 사이트 주소가 있으면 넣으세요
+          name: 'RushGate · 백엔드 · 인프라',
+          period: '2026.05 ~',
+          detail:
+            '쿠버네티스 위에 선착순 티켓팅 서비스를 올리고, 일부러 장애를 일으켜 진단하는 무대로 만들고 있습니다. Chaos Mesh로 장애를 주입하고 Prometheus·Loki·Grafana로 관측합니다. 이상 징후를 스스로 찾아 원인 가설을 세우고 조치까지 하는 에이전트를 붙이는 중입니다.',
+          link: '',
+        },
+        {
+          name: 'Pickeat · 백엔드 · 인프라',
+          period: '2025.06 ~',
+          detail:
+            '여럿이 모여 식당을 빠르게 고르는 실시간 투표 서비스입니다. 5분 남짓한 투표에 600명이 몰리는 상황을 Java·Spring으로 처리했고, 느린 쿼리를 찾아 P99 응답을 1.5초에서 200ms로 줄였습니다.',
+          link: '',
         },
       ],
     },
     {
-      emoji: '🏆',
+      title: 'Activity',
+      items: [
+        {
+          name: '우아한테크코스',
+          period: '2025.02 ~ 2025.11',
+          detail:
+            '10개월 동안 자바와 객체지향, 클린 코드를 다뤘습니다. 페어 프로그래밍과 팀 프로젝트로 계속 토론하며 배웠습니다.',
+        },
+        {
+          name: 'Greedy · 세종대학교 소프트웨어 동아리',
+          period: '',
+          detail:
+            '동아리를 운영하며 매주 세션을 진행합니다. 웹, 앱, 오픈소스 기여, AI까지 폭넓게 다룹니다.',
+        },
+      ],
+    },
+    {
+      title: 'Skills',
+      items: [
+        {
+          name: 'Languages',
+          period: '',
+          detail: 'Java · Python · C · SQL · Shell / Bash Script',
+        },
+        {
+          name: 'Technologies',
+          period: '',
+          detail:
+            'Kubernetes · Docker · AWS · GCP · Spring · MySQL · Nginx · GitHub Actions · Prometheus · Grafana · Loki · k6 · Flyway',
+        },
+      ],
+    },
+    {
       title: 'Certificates',
       items: [
-        { name: '자격증 이름', period: '2026.02', detail: '' },
+        { name: 'AWS Certified Solutions Architect – Associate', period: '', detail: '' },
+        { name: 'SQL 개발자 (SQLD)', period: '', detail: '' },
+        { name: 'OPIc IH (Intermediate High)', period: '', detail: '' },
       ],
     },
   ],
@@ -155,7 +189,7 @@ export const now = {
 // url 을 빈 문자열('')로 두면 그 버튼은 사라집니다. 주소를 채우면 다시 나타납니다.
 export const socials = [
   { name: 'GitHub', icon: 'github', url: 'https://github.com/supernovaMK' },
-  { name: 'LinkedIn', icon: 'linkedin', url: '' }, // ← 예: https://www.linkedin.com/in/내아이디
+  { name: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/in/minkikim02' },
   { name: 'YouTube', icon: 'youtube', url: '' },   // ← 예: https://www.youtube.com/@내채널
   { name: 'Email', icon: 'mail', url: 'mailto:daihoon5336@gmail.com' },
   // { name: 'X', icon: 'x', url: 'https://x.com/...' },
